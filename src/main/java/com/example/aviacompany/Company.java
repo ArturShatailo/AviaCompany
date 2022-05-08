@@ -6,8 +6,10 @@ public class Company {
 
     private Double capital;
     private String name;
-    private ArrayList <Aircraft> aircrafts = new ArrayList<>();
-    private ArrayList <Pilot> pilots = new ArrayList<>();
+    private ArrayList <MilitaryJet> militaryAircrafts = new ArrayList<>();
+    private ArrayList <MilitaryPilot> militaryPilots = new ArrayList<>();
+    private ArrayList <CivilJet> civilAircrafts = new ArrayList<>();
+    private ArrayList <CivilPilot> civilPilots = new ArrayList<>();
 
     public Company(Double capital, String name) {
         this.capital = capital;
@@ -26,11 +28,19 @@ public class Company {
         this.capital = capital;
     }
 
-    public ArrayList<Aircraft> getAircrafts() {
-        return aircrafts;
+    public ArrayList<MilitaryJet> getMilitaryAircrafts() {
+        return militaryAircrafts;
     }
 
-    public ArrayList<Pilot> getPilots() {
-        return pilots;
+    public ArrayList<MilitaryPilot> getMilitaryPilots() {
+        return militaryPilots;
+    }
+
+    public ArrayList<CivilJet> getCivilAircrafts() {
+        return civilAircrafts;
+    }
+
+    public ArrayList<CivilPilot> getCivilPilots() {
+        return civilPilots;
     }
 }

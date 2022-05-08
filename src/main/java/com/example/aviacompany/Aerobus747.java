@@ -1,21 +1,9 @@
 package com.example.aviacompany;
 
-public class Aerobus747 extends Aircraft implements CivilAircraft{
-
-    private double ticketCost;
-    private int sits;
-
+public class Aerobus747 extends CivilJet implements CivilAircraft{
 
     public Aerobus747(double cost, double monthlyMaintenance, double ticketCost, int sits) {
-        super("Airliner", "Aerobus-747", cost, monthlyMaintenance);
-        this.ticketCost = ticketCost;
-        this.sits = sits;
-    }
-
-    public Double getTicketCost(){ return ticketCost; }
-
-    public int getSits() {
-        return sits;
+        super("Aerobus-747", cost, monthlyMaintenance, ticketCost, sits);
     }
 
     public String getInfo(){

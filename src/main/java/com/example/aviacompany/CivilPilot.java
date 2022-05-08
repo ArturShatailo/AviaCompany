@@ -5,7 +5,7 @@ public class CivilPilot extends Pilot implements GeneralPilot{
     private int flights;
 
     public CivilPilot(double salary, int flights) {
-        super(salary, "Civil");
+        super(salary, "Civil pilot");
         this.flights = flights;
     }
 
@@ -18,7 +18,7 @@ public class CivilPilot extends Pilot implements GeneralPilot{
     }
 
     public String getInfo(){
-        return "Type: "+this.getType()+" pilot, salary: "+this.getSalary()+", flights per month: "+this.getFlights();
+        return "Type: "+this.getType()+", salary: "+this.getSalary()+", flights per month: "+this.getFlights();
     }
 
 }

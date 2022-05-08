@@ -10,4 +10,8 @@ public class Boeing777 extends CivilJet implements CivilAircraft{
         return "Type: "+this.getUseArea()+", Model: "+this.getModel()+", Cost: "+this.getCost()+", Monthly maintenance: -$"+this.getMonthlyMaintenance()+", General sits: "+this.getSits()+", Business sits: "+this.getSitsP()+", General ticket price: "+this.getTicketCost()+", Business ticket price: "+this.getTicketCostP();
     }
 
+    @Override
+    public Double calculation() {
+       return this.getSits()*this.getTicketCost()+this.getSitsP()*this.getTicketCostP();
+    }
 }

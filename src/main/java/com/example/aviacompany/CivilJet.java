@@ -36,4 +36,9 @@ public class CivilJet extends Aircraft{
         return sitsP;
     }
 
+
+    public Double calculation(){
+        return null;
+    }
+
 }

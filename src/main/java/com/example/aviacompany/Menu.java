@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Menu {
 
     public int fields;
-    public ArrayList<String> arrayMenu = new ArrayList<>();
+    public ArrayList<String> arrayMenu;
 
     public Menu(int fields, ArrayList<String> arrayMenu) {
         this.fields = fields;

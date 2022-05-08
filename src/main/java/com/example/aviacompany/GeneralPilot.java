@@ -4,4 +4,6 @@ public interface GeneralPilot {
 
     String getInfo();
 
+    Double calculation();
+
 }

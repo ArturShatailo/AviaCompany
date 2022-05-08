@@ -21,4 +21,8 @@ public class CivilPilot extends Pilot implements GeneralPilot{
         return "Type: "+this.getType()+", salary: "+this.getSalary()+", flights per month: "+this.getFlights();
     }
 
+    public Double calculation() {
+        return this.getSalary();
+    }
+
 }

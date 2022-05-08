@@ -10,4 +10,8 @@ public class MilitaryPilot extends Pilot implements GeneralPilot{
         return "Type: "+this.getType()+", salary: "+this.getSalary();
     }
 
+    public Double calculation() {
+        return this.getSalary();
+    }
+
 }

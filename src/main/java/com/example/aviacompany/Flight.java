@@ -4,23 +4,33 @@ public class Flight {
 
     private String status; //protected, attacked, successful
     private CivilPilot civilPilot;
-    private Aircraft civilAircraft;
+    private CivilJet civilAircraft;
     private MilitaryPilot militaryPilot;
-    private Aircraft militaryAircraft;
-    private int chanceOfAttack;
+    private MilitaryJet militaryAircraft;
+    private int chanceOfDefence;
+    private double profitability;
 
 
     public Flight() {
 
     }
 
-    public Flight(String status, CivilPilot civilPilot, Aircraft civilAircraft, MilitaryPilot militaryPilot, Aircraft militaryAircraft, int chanceOfAttack) {
+    public Flight(String status, CivilPilot civilPilot, CivilJet civilAircraft, MilitaryPilot militaryPilot, MilitaryJet militaryAircraft, int chanceOfAttack) {
         this.status = status;
         this.civilPilot = civilPilot;
         this.civilAircraft = civilAircraft;
         this.militaryPilot = militaryPilot;
         this.militaryAircraft = militaryAircraft;
-        this.chanceOfAttack = chanceOfAttack;
+        this.chanceOfDefence = chanceOfAttack;
+
+    }
+
+    public double getProfitability() {
+        return profitability;
+    }
+
+    public void setProfitability(double profitability) {
+        this.profitability = profitability;
     }
 
     public void setStatus(String status) {
@@ -31,7 +41,7 @@ public class Flight {
         this.civilPilot = civilPilot;
     }
 
-    public void setCivilAircraft(Aircraft civilAircraft) {
+    public void setCivilAircraft(CivilJet civilAircraft) {
         this.civilAircraft = civilAircraft;
     }
 
@@ -39,15 +49,41 @@ public class Flight {
         this.militaryPilot = militaryPilot;
     }
 
-    public void setMilitaryAircraft(Aircraft militaryAircraft) {
+    public void setMilitaryAircraft(MilitaryJet militaryAircraft) {
         this.militaryAircraft = militaryAircraft;
     }
 
-    public void setChanceOfAttack(Integer chanceOfAttack) {
-        this.chanceOfAttack = chanceOfAttack;
+    public void setChanceOfDefence(Integer chanceOfDefence) {
+        this.chanceOfDefence = chanceOfDefence;
     }
 
-    public int getChanceOfAttack() {
-        return chanceOfAttack;
+    public int getChanceOfDefence() {
+        return chanceOfDefence;
     }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public CivilPilot getCivilPilot() {
+        return civilPilot;
+    }
+
+    public CivilJet getCivilAircraft() {
+        return civilAircraft;
+    }
+
+    public MilitaryPilot getMilitaryPilot() {
+        return militaryPilot;
+    }
+
+    public MilitaryJet getMilitaryAircraft() {
+        return militaryAircraft;
+    }
+
+    @Override
+    public String toString(){
+        return status+" "+civilPilot.toString()+" "+civilAircraft.toString()+" "+militaryPilot.toString()+" "+militaryAircraft.toString()+" "+chanceOfDefence+" "+profitability;
+    }
+
 }

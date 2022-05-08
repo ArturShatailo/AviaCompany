@@ -10,4 +10,9 @@ public class Aerobus747 extends CivilJet implements CivilAircraft{
         return "Type: "+this.getUseArea()+", Model: "+this.getModel()+", Cost: "+this.getCost()+", Monthly maintenance: -$"+this.getMonthlyMaintenance()+", General sits: "+this.getSits()+", General ticket price: "+this.getTicketCost();
     }
 
+    @Override
+    public Double calculation() {
+        return this.getSits()*this.getTicketCost();
+    }
+
 }

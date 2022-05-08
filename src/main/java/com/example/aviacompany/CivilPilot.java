@@ -1,6 +1,6 @@
 package com.example.aviacompany;
 
-public class CivilPilot extends Pilot {
+public class CivilPilot extends Pilot implements GeneralPilot{
 
     private int flights;
 
@@ -15,6 +15,10 @@ public class CivilPilot extends Pilot {
 
     public void setFlights(int flights) {
         this.flights = flights;
+    }
+
+    public String getInfo(){
+        return "Type: "+this.getType()+" pilot, salary: "+this.getSalary()+", flights per month: "+this.getFlights();
     }
 
 }

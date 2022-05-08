@@ -18,4 +18,10 @@ public class Pilot {
         return salary;
     }
 
+    @Override
+    public String toString(){
+        return this.type;
+    }
+
+
 }

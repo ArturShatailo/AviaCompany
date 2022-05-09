@@ -5,16 +5,16 @@ import java.util.ArrayList;
 public class Month {
 
     private double profit;
-    private double loss;
+    private double expenses;
     private ArrayList<Flight> flights = new ArrayList<>();
 
     public Month(){
 
     }
 
-    public Month(double profit, double loss, ArrayList<Flight> flights) {
+    public Month(double profit, double expenses, ArrayList<Flight> flights) {
         this.profit = profit;
-        this.loss = loss;
+        this.expenses = expenses;
         this.flights = flights;
     }
 
@@ -26,30 +26,21 @@ public class Month {
         this.profit = profit;
     }
 
-    public double getLoss() {
-        return loss;
+    public double getExpenses() {
+        return expenses;
     }
 
-    public void setLoss(double loss) {
-        this.loss = loss;
+    public void setExpenses(double expenses) {
+        this.expenses = expenses;
     }
 
     public ArrayList<Flight> getFlights() {
         return flights;
     }
 
-    public void setFlights(ArrayList<Flight> flights) {
-        this.flights = flights;
-    }
-
-    public void calculateProfit(){
-
-    }
-
-
     @Override
     public String toString(){
-        return this.getFlights() + " " + this.getLoss() + " " + this.getProfit();
+        return this.getFlights() + " " + this.getExpenses() + " " + this.getProfit();
     }
 
 }

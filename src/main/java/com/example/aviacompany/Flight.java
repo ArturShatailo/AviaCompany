@@ -11,19 +11,7 @@ public class Flight {
     private double profitability;
 
 
-    public Flight() {
-
-    }
-
-    public Flight(String status, CivilPilot civilPilot, CivilJet civilAircraft, MilitaryPilot militaryPilot, MilitaryJet militaryAircraft, int chanceOfAttack) {
-        this.status = status;
-        this.civilPilot = civilPilot;
-        this.civilAircraft = civilAircraft;
-        this.militaryPilot = militaryPilot;
-        this.militaryAircraft = militaryAircraft;
-        this.chanceOfDefence = chanceOfAttack;
-
-    }
+    public Flight() {}
 
     public double getProfitability() {
         return profitability;
@@ -61,10 +49,6 @@ public class Flight {
         return chanceOfDefence;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
     public CivilPilot getCivilPilot() {
         return civilPilot;
     }
@@ -82,8 +66,11 @@ public class Flight {
     }
 
     @Override
-    public String toString(){
-        return status+" "+civilPilot.toString()+" "+civilAircraft.toString()+" "+militaryPilot.toString()+" "+militaryAircraft.toString()+" "+chanceOfDefence+" "+profitability;
+    public String toString() {
+        if (militaryPilot != null && militaryPilot != null) {
+            return status + " " + civilPilot.toString() + " " + civilAircraft.toString() + " " + militaryPilot.toString() + " " + militaryAircraft.toString() + " " + chanceOfDefence + " " + profitability;
+        }else{
+            return status + " " + civilPilot.toString() + " " + civilAircraft.toString() + " " + chanceOfDefence + " " + profitability;
+        }
     }
-
 }

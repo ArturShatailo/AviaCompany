@@ -3,10 +3,16 @@ package com.example.aviacompany;
 public class CivilPilot extends Pilot implements GeneralPilot{
 
     private int flights;
+    private int defaultFlights;
 
     public CivilPilot(double salary, int flights) {
         super(salary, "Civil pilot");
         this.flights = flights;
+        this.defaultFlights = flights;
+    }
+
+    public int getDefaultFlights() {
+        return defaultFlights;
     }
 
     public int getFlights() {
@@ -23,6 +29,11 @@ public class CivilPilot extends Pilot implements GeneralPilot{
 
     public Double calculation() {
         return this.getSalary();
+    }
+
+    @Override
+    public String toString(){
+        return this.getType()+"("+this.flights+" of "+this.defaultFlights+")";
     }
 
 }

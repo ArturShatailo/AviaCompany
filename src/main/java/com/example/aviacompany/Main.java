@@ -1,7 +1,6 @@
 package com.example.aviacompany;
 
 import java.util.ArrayList;
-import java.util.function.Predicate;
 
 public class Main {
 
@@ -16,8 +15,8 @@ public class Main {
 
         //Defaults
         company = new Company(100000.0, name);
-        company.getCivilAircrafts().add(new Aerobus747(5000.0, 130, 10, 130));
-        company.getCivilPilots().add(new CivilPilot(500.0, 5));
+        company.getCivilAircrafts().add(new Aerobus747(5000.0, 200, 100, 130, 1));
+        company.getCivilPilots().add(new CivilPilot(500.0, 2));
 
         System.out.println("Great, now you are 100% shareholder of " + company.getName() + " with start capital of: $" +
                 company.getCapital() + "\nBy default "+showKit()+
@@ -68,12 +67,12 @@ public class Main {
     public static void callMenu(){
 
         System.out.println(company.getName()+" balance: $"+ company.getCapital());
-        RaptorF22 marf22 = new RaptorF22(8000.0, 100, 15);
-        Lightning2F35 mal2f35 = new Lightning2F35(10000.0, 80, 25);
-        Aerobus747 caa747 = new Aerobus747(5000.0, 130, 10, 130);
-        Boeing777 cab777 = new Boeing777(15000.0, 130, 30, 50, 130, 20);
+        RaptorF22 marf22 = new RaptorF22(8000.0, 500, 55);
+        Lightning2F35 mal2f35 = new Lightning2F35(10000.0, 800, 75);
+        Aerobus747 caa747 = new Aerobus747(5000.0, 200, 100, 130, 1);
+        Boeing777 cab777 = new Boeing777(15000.0, 500, 150, 400, 130, 20, 2);
         MilitaryPilot mp = new MilitaryPilot(1000.0);
-        CivilPilot cp = new CivilPilot(500.0, 5);
+        CivilPilot cp = new CivilPilot(500.0, 2);
 
         m = new Menu(7, new ArrayList<>());
 
@@ -115,6 +114,12 @@ public class Main {
 
         Month month = new Month(0, 0, new ArrayList<>());
 
+        month.setExpenses(
+                -company.getMilitaryAircrafts().stream().mapToDouble(Aircraft::getMonthlyMaintenance).sum()-
+                company.getCivilAircrafts().stream().mapToDouble(Aircraft::getMonthlyMaintenance).sum()-
+                company.getMilitaryPilots().stream().mapToDouble(Pilot::getSalary).sum()-
+                company.getCivilPilots().stream().mapToDouble(Pilot::getSalary).sum());
+
         startFlight(month);
 
     }
@@ -123,97 +128,65 @@ public class Main {
     public static void startFlight(Month month){
 
         Flight flight = new Flight();
-        company.getCivilPilots().removeIf(n -> (n.getFlights()==0));
 
-        if(company.getCivilPilots().size()<=0){
-            System.out.println("Your civil pilots have no flights this month");
-            getResults(month);
+        for (CivilPilot pilot : company.getCivilPilots()) {
+            if (pilot != null) {
+                if (pilot.getFlights() > 0) {
+                    flight.setCivilPilot(pilot);
+                    pilot.setFlights(pilot.getFlights() - 1);
+                    break;
+                }
+            }
         }
-
-
-        if(company.getCivilPilots().isEmpty()){
-            System.out.println("no civil pilots left this month");
-            getResults(month);
-        }else{
-            flight.setCivilPilot(company.getCivilPilots().get(0));
-            company.getCivilPilots().get(0).setFlights(company.getCivilPilots().get(0).getFlights()-1);
-
-            if(company.getCivilAircrafts().isEmpty()){
-                System.out.println("no civil aircrafts left this month");
-                getResults(month);
-            }else{
-                flight.setCivilAircraft(company.getCivilAircrafts().get(0));
-
-                if(company.getMilitaryPilots().isEmpty()){
-                    System.out.println("Be aware, you have no military pilots");
-                    flight.setChanceOfDefence(10);
-                }else{
-                    flight.setMilitaryPilot(company.getMilitaryPilots().get(0));
-
-                    if(company.getMilitaryAircrafts().isEmpty()){
-                        System.out.println("Be aware, you have no military aircrafts");
-                        flight.setChanceOfDefence(10);
-                    }else{
-                        for (MilitaryJet aircraft : company.getMilitaryAircrafts()) {
-                            flight.setChanceOfDefence(flight.getChanceOfDefence()+aircraft.getDefenceChance());
-                        }
-                        flight.setMilitaryAircraft(company.getMilitaryAircrafts().get(0));
-                    }
+        for (CivilJet aircraft : company.getCivilAircrafts()) {
+            if (aircraft != null) {
+                if (aircraft.getFlights() > 0) {
+                    flight.setCivilAircraft(aircraft);
+                    aircraft.setFlights(aircraft.getFlights() - 1);
+                    break;
                 }
             }
         }
 
-//        for (CivilPilot pilot : company.getCivilPilots()) {
-//            if(pilot!=null){
-//                flight.setCivilPilot(pilot);
-//
-//                for (CivilJet aircraft : company.getCivilAircrafts()) {
-//                    if(aircraft!=null){
-//                        flight.setCivilAircraft(aircraft);
-//                    }else{
-//                        System.out.println("You need more civil aircrafts");
-//                        callMenu();
-//                        break;
-//                    }
-//                }
-//
-//            }else{
-//                System.out.println("You need more civil pilots");
-//                callMenu();
-//                break;
-//            }
-//        }
-//
-//        for (MilitaryPilot pilot : company.getMilitaryPilots()) {
-//            if(pilot!=null){
-//                flight.setMilitaryPilot(pilot);
-//
-//                for (MilitaryJet aircraft : company.getMilitaryAircrafts()) {
-//                    if(aircraft!=null){
-//                        flight.setChanceOfDefence(flight.getChanceOfDefence()+aircraft.getDefenceChance());
-//                        flight.setMilitaryAircraft(aircraft);
-//                    }else{
-//                        System.out.println("Be aware, you have no military aircrafts");
-//                        flight.setChanceOfDefence(10);
-//                        break;
-//                    }
-//                }
-//                break;
-//
-//            }else{
-//                System.out.println("Be aware, you have no military pilots");
-//                break;
-//            }
-//        }
+        if(flight.getCivilPilot() == null || flight.getCivilAircraft() == null){
+            System.out.println("month is over because of civil aircrafts or pilots absence");
+
+            company.getCivilPilots().forEach(civilPilot -> civilPilot.setFlights(civilPilot.getDefaultFlights()));
+            company.getCivilAircrafts().forEach(civilJet -> civilJet.setFlights(civilJet.getDefaultFlights()));
+
+            getResults(month);
+        }
+
+        for (MilitaryPilot pilot : company.getMilitaryPilots()) {
+            if (pilot != null) {
+                flight.setMilitaryPilot(pilot);
+
+                for (MilitaryJet aircraft : company.getMilitaryAircrafts()) {
+                    if(aircraft!=null){
+                        flight.setMilitaryAircraft(aircraft);
+                    }else{
+                        System.out.println("Be aware, you have no military aircrafts");
+                        flight.setChanceOfDefence(10);
+                    }
+                    break;
+                }
+            }else{
+                System.out.println("Be aware, you have no military pilots");
+                flight.setChanceOfDefence(10);
+            }
+            break;
+        }
+
+        flight.setChanceOfDefence(
+                (company.getMilitaryAircrafts().stream().mapToInt(MilitaryJet::getDefenceChance).sum())
+                        *company.getMilitaryPilots().size());
+
 
         int chance = Tech.getRandom(0, 100);
         if(chance>=90){
             flight.setStatus("successful");
 
             flight.setProfitability(flight.getCivilAircraft().calculation());
-
-//            System.out.println(chance);
-//            System.out.println(flight);
 
         }else if(chance<=flight.getChanceOfDefence()){
             if(null != flight.getMilitaryAircraft()){
@@ -224,10 +197,6 @@ public class Main {
                 company.getMilitaryAircrafts().remove(flight.getMilitaryAircraft());
                 company.getMilitaryPilots().remove(flight.getMilitaryPilot());
 
-//                System.out.println(chance);
-//                System.out.println(company.getMilitaryPilots());
-//                System.out.println(company.getMilitaryAircrafts());
-//                System.out.println(flight);
             }else{
                 flight.setStatus("attacked");
 
@@ -235,12 +204,6 @@ public class Main {
 
                 company.getCivilAircrafts().remove(flight.getCivilAircraft());
                 company.getCivilPilots().remove(flight.getCivilPilot());
-
-//                System.out.println(chance);
-//                System.out.println(company.getCivilPilots());
-//                System.out.println(company.getCivilAircrafts());
-//                System.out.println(flight);
-
             }
         }else{
             flight.setStatus("attacked");
@@ -248,12 +211,6 @@ public class Main {
             company.getCivilPilots().remove(flight.getCivilPilot());
 
             flight.setProfitability(flight.getCivilAircraft().calculation()-((flight.getCivilAircraft().calculation())*2));
-
-//            System.out.println(chance+"aha");
-//            System.out.println(company.getCivilPilots());
-//            System.out.println(company.getCivilAircrafts());
-//            System.out.println(flight);
-
         }
 
         month.getFlights().add(flight);
@@ -265,7 +222,13 @@ public class Main {
 
     public static void getResults(Month month){
 
-        System.out.println(month);
+        month.setProfit(
+                month.getFlights().stream().mapToDouble(Flight::getProfitability).sum());
+
+        company.setCapital(company.getCapital()+month.getExpenses()+month.getProfit());
+
+        System.out.println("Monthly journal of flights: "+ month);
+        System.out.println("\n"+company.getName()+" has "+(month.getProfit()+month.getExpenses())+"$ in this month.\n");
 
         callMenu();
     }

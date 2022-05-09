@@ -40,7 +40,7 @@ public class Month {
 
     @Override
     public String toString(){
-        return this.getFlights() + " " + this.getExpenses() + " " + this.getProfit();
+        return this.getFlights() + " Expenses: " + this.getExpenses() + " Profit: " + this.getProfit();
     }
 
 }

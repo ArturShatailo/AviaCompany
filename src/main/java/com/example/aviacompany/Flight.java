@@ -68,9 +68,9 @@ public class Flight {
     @Override
     public String toString() {
         if (militaryPilot != null && militaryPilot != null) {
-            return status + " " + civilPilot.toString() + " " + civilAircraft.toString() + " " + militaryPilot.toString() + " " + militaryAircraft.toString() + " " + chanceOfDefence + " " + profitability;
+            return status + " " + civilPilot.toString() + " " + civilAircraft.toString() + " " + militaryPilot.toString() + " " + militaryAircraft.toString() + " Def.chance " + chanceOfDefence + " Profitability " + profitability;
         }else{
-            return status + " " + civilPilot.toString() + " " + civilAircraft.toString() + " " + chanceOfDefence + " " + profitability;
+            return status + " " + civilPilot.toString() + " " + civilAircraft.toString() + " Def.chance " + chanceOfDefence + " Profitability " + profitability;
         }
     }
 }

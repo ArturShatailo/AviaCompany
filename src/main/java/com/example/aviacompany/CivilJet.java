@@ -1,6 +1,6 @@
 package com.example.aviacompany;
 
-public class CivilJet extends Aircraft{
+public class CivilJet extends Aircraft implements CalculationOfObject{
 
     private double ticketCost;
     private int sits;

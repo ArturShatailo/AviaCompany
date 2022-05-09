@@ -1,6 +1,6 @@
 package com.example.aviacompany;
 
-public class CivilPilot extends Pilot implements GeneralPilot{
+public class CivilPilot extends Pilot implements CalculationOfObject, getObjectInformation {
 
     private int flights;
     private int defaultFlights;

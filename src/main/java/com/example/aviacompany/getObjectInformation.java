@@ -1,6 +1,6 @@
 package com.example.aviacompany;
 
-public interface MilitaryAircraft {
+public interface getObjectInformation {
 
     String getInfo();
 

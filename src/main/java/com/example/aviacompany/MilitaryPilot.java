@@ -1,6 +1,6 @@
 package com.example.aviacompany;
 
-public class MilitaryPilot extends Pilot implements GeneralPilot{
+public class MilitaryPilot extends Pilot implements CalculationOfObject, getObjectInformation {
 
     public MilitaryPilot(double salary) {
         super(salary, "Military pilot");

@@ -6,6 +6,7 @@ public class Boeing777 extends CivilJet implements CivilAircraft{
         super("Boeing-777", cost, monthlyMaintenance, ticketCost, ticketCostP, sits, sitsP, flights);
     }
 
+    //implemented from CivilAircraft
     public String getInfo(){
         return "Type: "+this.getUseArea()+", Model: "+this.getModel()+", Cost: "+this.getCost()+", Monthly maintenance: -$"+this.getMonthlyMaintenance()+", General sits: "+this.getSits()+", Business sits: "+this.getSitsP()+", General ticket price: "+this.getTicketCost()+", Business ticket price: "+this.getTicketCostP()+" flights per month: "+this.getFlights();
     }

@@ -6,6 +6,7 @@ public class Lightning2F35 extends MilitaryJet implements MilitaryAircraft{
         super("F-35", cost, monthlyMaintenance, defenceChance);
     }
 
+    //implemented from MilitaryAircraft
     public String getInfo(){
         return "Type: "+this.getUseArea()+", Model: "+this.getModel()+", Cost: "+this.getCost()+", Monthly maintenance: -$"+this.getMonthlyMaintenance()+", +"+this.getDefenceChance()+"% to defence chance";
     }

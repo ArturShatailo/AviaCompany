@@ -13,7 +13,6 @@ public class Menu {
     }
 
     public void menuBuilder(){
-
         for(int i=1; i<=this.fields; i++){
             System.out.println(i+") "+ this.arrayMenu.get(i-1));
         }
